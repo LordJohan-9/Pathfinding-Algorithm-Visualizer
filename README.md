@@ -190,7 +190,3 @@ java -cp build/classes/java/main com.visualizer.MazeGenerator
 ## License
 
 MIT License - See LICENSE file for details.
-
----
-
-**Note**: This project is a final assignment for the Java Programming course at BME.
