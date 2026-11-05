@@ -1,5 +1,6 @@
 package com.visualizer.model;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -9,6 +10,7 @@ import java.io.Serializable;
  */
 public class Node implements Serializable, Comparable<Node> {
     
+    @Serial
     private static final long serialVersionUID = 1L;
     
     private final int x;
@@ -96,9 +98,10 @@ public class Node implements Serializable, Comparable<Node> {
     public void setType(NodeType type) { this.type = type; }
     public double getGCost() { return gCost; }
     public void setGCost(double gCost) { this.gCost = gCost; }
-    public double getHCost() { return hCost; }
     public void setHCost(double hCost) { this.hCost = hCost; }
-    public double getFCost() { return fCost; }
-    public Node getParent() { return parent; }
     public void setParent(Node parent) { this.parent = parent; }
+
+    public Node getParent() {
+        return parent;
+    }
 }

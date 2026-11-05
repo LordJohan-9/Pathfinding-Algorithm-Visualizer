@@ -5,13 +5,16 @@ import com.visualizer.model.MazeState;
 import com.visualizer.model.NodeType;
 
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Utility class to generate sample maze files for the Pathfinding Visualizer.
  * Run this class to create 5 pre-made maze layouts.
  */
 public class MazeGenerator {
-    
+
+    private static final Logger LOGGER = Logger.getLogger(MazeGenerator.class.getName());
     private static final int ROWS = 25;
     private static final int COLS = 40;
     
@@ -27,7 +30,7 @@ public class MazeGenerator {
         generateDiagonalWallsMaze();
         generateComplexMaze();
         
-        System.out.println("All maze files generated in 'mazes' folder!");
+        LOGGER.info("All maze files generated in 'mazes' folder!");
     }
     
     /**
@@ -242,9 +245,9 @@ public class MazeGenerator {
             try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
                 oos.writeObject(state);
             }
-            System.out.println("Created: " + filename);
+            LOGGER.log(Level.INFO, "Created: {0}", filename);
         } catch (IOException e) {
-            System.err.println("Failed to create " + filename + ": " + e.getMessage());
+            LOGGER.log(Level.SEVERE, e, () -> "Failed to create " + filename);
         }
     }
 }
