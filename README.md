@@ -2,7 +2,7 @@
 
 A Java Swing application that allows users to interactively draw mazes and watch multiple pathfinding algorithms (A*, Dijkstra, BFS, DFS) find the shortest path between a start and end point. The application visualizes the algorithm's exploration process in real-time with configurable speed.
 
-![Pathfinding Visualizer](https://img.shields.io/badge/Java-17+-blue.svg)
+![Pathfinding Visualizer](https://img.shields.io/badge/Java-21+-blue.svg)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
 
 ## Table of Contents
@@ -40,7 +40,7 @@ A Java Swing application that allows users to interactively draw mazes and watch
 
 ## Prerequisites
 
-- **Java 17+** (Java 21+ recommended for Gradle compatibility)
+- **Java 21+**
 - **Gradle 8.5+** (included via wrapper)
 
 ## Installation
@@ -168,8 +168,8 @@ src/
 
 ### Test Coverage
 
-- **AlgorithmTest.java**: 29 tests for pathfinding algorithms
-- **SerializationTest.java**: 7 tests for save/load functionality
+- **AlgorithmTest.java**: 21 tests for pathfinding algorithms
+- **SerializationTest.java**: 9 tests for save/load functionality
 
 ## Maze Files
 

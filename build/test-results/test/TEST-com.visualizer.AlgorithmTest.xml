@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.visualizer.AlgorithmTest" tests="21" skipped="0" failures="0" errors="0" timestamp="2026-10-09T12:43:49.870Z" hostname="DESKTOP-F9T8V45" time="0.115">
+<testsuite name="com.visualizer.AlgorithmTest" tests="21" skipped="0" failures="0" errors="0" timestamp="2026-11-05T10:21:13.289Z" hostname="DESKTOP-F9T8V45" time="0.157">
   <properties/>
-  <testcase name="testBFSFindsShortestPath()" classname="com.visualizer.AlgorithmTest" time="0.029"/>
-  <testcase name="testAStarVisitedNodes()" classname="com.visualizer.AlgorithmTest" time="0.005"/>
-  <testcase name="testSetNodeType()" classname="com.visualizer.AlgorithmTest" time="0.007"/>
-  <testcase name="testResetPath()" classname="com.visualizer.AlgorithmTest" time="0.001"/>
-  <testcase name="testBFSFindsPath()" classname="com.visualizer.AlgorithmTest" time="0.001"/>
-  <testcase name="testAllAlgorithmsHandleNoPath()" classname="com.visualizer.AlgorithmTest" time="0.009"/>
+  <testcase name="testBFSFindsShortestPath()" classname="com.visualizer.AlgorithmTest" time="0.048"/>
+  <testcase name="testAStarVisitedNodes()" classname="com.visualizer.AlgorithmTest" time="0.003"/>
+  <testcase name="testSetNodeType()" classname="com.visualizer.AlgorithmTest" time="0.003"/>
+  <testcase name="testResetPath()" classname="com.visualizer.AlgorithmTest" time="0.002"/>
+  <testcase name="testBFSFindsPath()" classname="com.visualizer.AlgorithmTest" time="0.003"/>
+  <testcase name="testAllAlgorithmsHandleNoPath()" classname="com.visualizer.AlgorithmTest" time="0.006"/>
   <testcase name="testStartNodeUpdate()" classname="com.visualizer.AlgorithmTest" time="0.002"/>
   <testcase name="testDFSFindsPath()" classname="com.visualizer.AlgorithmTest" time="0.002"/>
   <testcase name="testEndNodeUpdate()" classname="com.visualizer.AlgorithmTest" time="0.001"/>
   <testcase name="testPathReconstruction()" classname="com.visualizer.AlgorithmTest" time="0.001"/>
   <testcase name="testDijkstraVsAStarEfficiency()" classname="com.visualizer.AlgorithmTest" time="0.002"/>
-  <testcase name="testAStarFindsPath()" classname="com.visualizer.AlgorithmTest" time="0.001"/>
-  <testcase name="testAllAlgorithmsOnSameMaze()" classname="com.visualizer.AlgorithmTest" time="0.002"/>
+  <testcase name="testAStarFindsPath()" classname="com.visualizer.AlgorithmTest" time="0.002"/>
+  <testcase name="testAllAlgorithmsOnSameMaze()" classname="com.visualizer.AlgorithmTest" time="0.004"/>
   <testcase name="testAStarGraphVsTreeSearch()" classname="com.visualizer.AlgorithmTest" time="0.002"/>
-  <testcase name="testNoPathWhenBlocked()" classname="com.visualizer.AlgorithmTest" time="0.001"/>
-  <testcase name="testNodeEquality()" classname="com.visualizer.AlgorithmTest" time="0.003"/>
+  <testcase name="testNoPathWhenBlocked()" classname="com.visualizer.AlgorithmTest" time="0.002"/>
+  <testcase name="testNodeEquality()" classname="com.visualizer.AlgorithmTest" time="0.002"/>
   <testcase name="testDijkstraFindsPath()" classname="com.visualizer.AlgorithmTest" time="0.001"/>
   <testcase name="testNodeComparison()" classname="com.visualizer.AlgorithmTest" time="0.001"/>
   <testcase name="testManhattanDistance()" classname="com.visualizer.AlgorithmTest" time="0.001"/>
-  <testcase name="testResetBoard()" classname="com.visualizer.AlgorithmTest" time="0.001"/>
-  <testcase name="testGridInitialization()" classname="com.visualizer.AlgorithmTest" time="0.001"/>
+  <testcase name="testResetBoard()" classname="com.visualizer.AlgorithmTest" time="0.002"/>
+  <testcase name="testGridInitialization()" classname="com.visualizer.AlgorithmTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
