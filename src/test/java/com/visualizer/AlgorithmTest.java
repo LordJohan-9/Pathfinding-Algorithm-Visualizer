@@ -286,8 +286,7 @@ class AlgorithmTest {
             }
         }
         
-        // Should have visited some nodes (at least the start's neighbors explored)
-        assertTrue(visitedCount >= 0, "Algorithm should have explored nodes");
+        assertTrue(visitedCount > 0, "A* should mark expanded non-endpoint nodes as visited");
     }
     
     @Test
@@ -340,12 +339,16 @@ class AlgorithmTest {
     
     @Test
     void testBFSFindsShortestPath() {
-        // Create a specific maze where shortest path matters
+        // Force a detour around a vertical wall; the shortest route has 32 steps.
         engine.resetBoard();
         
-        // Set specific start and end
-        engine.setNodeType(2, ROWS / 2, NodeType.START);
-        engine.setNodeType(COLS - 3, ROWS / 2, NodeType.END);
+        int startY = ROWS / 2;
+        int endX = COLS - 3;
+        engine.setNodeType(2, startY, NodeType.START);
+        engine.setNodeType(endX, startY, NodeType.END);
+        for (int y = 2; y < ROWS - 2; y++) {
+            engine.setNodeType(COLS / 2, y, NodeType.WALL);
+        }
         
         // Run BFS
         engine.initializeAlgorithm(AlgorithmType.BFS);
@@ -353,7 +356,11 @@ class AlgorithmTest {
             engine.executeStep();
         }
         
-        // BFS guarantees shortest path - count path nodes
+        assertEquals(AlgorithmState.PATH_FOUND, engine.getAlgorithmState());
+        assertEquals(32.0, engine.getEndNode().getGCost(), 0.0,
+            "BFS should find the shortest route around the wall");
+
+        // The PATH marking excludes the start and end cells.
         int pathCount = 0;
         for (int y = 0; y < ROWS; y++) {
             for (int x = 0; x < COLS; x++) {
@@ -363,7 +370,7 @@ class AlgorithmTest {
             }
         }
         
-        assertTrue(pathCount > 0);
+        assertEquals(31, pathCount);
     }
     
     @Test

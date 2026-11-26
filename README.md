@@ -1,6 +1,8 @@
 # Pathfinding Algorithm Visualizer
 
-A Java Swing application that allows users to interactively draw mazes and watch multiple pathfinding algorithms (A*, Dijkstra, BFS, DFS) find the shortest path between a start and end point. The application visualizes the algorithm's exploration process in real-time with configurable speed.
+A Java Swing application that allows users to interactively draw mazes and watch A*, Dijkstra, BFS, and DFS search between a start and end point. A*, Dijkstra, and BFS find shortest paths on this unweighted grid; DFS finds a path that may not be shortest. The application visualizes exploration in real time with configurable speed and a resizable window.
+
+For the full homework write-up, including the class diagram, use-case and algorithm sequence diagrams, implementation details, and unit-test descriptions, see [Homework Documentation](docs/HOMEWORK_DOCUMENTATION.md).
 
 ![Pathfinding Visualizer](https://img.shields.io/badge/Java-21+-blue.svg)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
@@ -22,7 +24,8 @@ A Java Swing application that allows users to interactively draw mazes and watch
 
 - **Interactive Grid**: Draw walls and place start/end nodes using mouse
 - **Real-time Animation**: Watch algorithms explore the grid step-by-step
-- **Configurable Speed**: Adjust animation speed from 1ms to 100ms per step
+- **Configurable Speed**: Adjust animation delay from 1ms to 100ms per step (faster on the right)
+- **Resizable Window**: Scale the grid display while keeping the same number of cells
 - **Save/Load**: Persist maze layouts using Java Serialization
 - **Multiple Algorithms**: A* Tree Search, A* Graph Search, Dijkstra, BFS, and DFS
 - **Unit Tests**: Comprehensive JUnit 5 test suite
@@ -95,7 +98,7 @@ java -jar build/libs/pathfinding-visualizer-1.0.0.jar
 - **Clear Board**: Reset entire grid
 - **Save Maze**: Save current layout to `.maze` file
 - **Load Maze**: Load saved maze from `.maze` file
-- **Speed Slider**: Adjust animation speed (1-100ms)
+- **Speed Slider**: Adjust animation delay (1-100ms; faster on the right)
 
 ## Project Structure
 
@@ -150,7 +153,7 @@ src/
 ### Threading
 
 - All GUI operations on Event Dispatch Thread (EDT)
-- Timer-based animation (60 FPS max)
+- Timer-based animation on the Event Dispatch Thread, with a configurable step delay
 - No blocking while loops in EDT
 
 ## Testing
