@@ -141,7 +141,8 @@ public class ApplicationWindow extends JFrame {
         speedTitleLabel.setForeground(Color.WHITE);
         toolbar.add(speedTitleLabel);
         
-        speedSlider = new JSlider(1, 100, 50); // Min: 1ms (fast), Max: 100ms (slow), Default: 50ms
+        speedSlider = new JSlider(1, 100, 50); // 1ms is fastest; 100ms is slowest
+        speedSlider.setInverted(true);
         speedSlider.setPreferredSize(new Dimension(100, 25));
         speedSlider.setBackground(Color.DARK_GRAY);
         speedSlider.addChangeListener(e -> onSpeedChanged());
@@ -183,7 +184,7 @@ public class ApplicationWindow extends JFrame {
      */
     private void setupWindow() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setResizable(false);
+        setResizable(true);
         pack();
         setLocationRelativeTo(null); // Center on screen
     }

@@ -17,6 +17,7 @@ public class VisualizerPanel extends JPanel {
     
     private static final int CELL_SIZE = 20;
     private static final int GRID_LINE_WIDTH = 1;
+    private static final int MIN_CELL_SIZE = 8;
     
     private final AlgorithmEngine engine;
     private final int rows;
@@ -40,6 +41,10 @@ public class VisualizerPanel extends JPanel {
         setPreferredSize(new Dimension(
             cols * CELL_SIZE + GRID_LINE_WIDTH,
             rows * CELL_SIZE + GRID_LINE_WIDTH
+        ));
+        setMinimumSize(new Dimension(
+            cols * MIN_CELL_SIZE + GRID_LINE_WIDTH,
+            rows * MIN_CELL_SIZE + GRID_LINE_WIDTH
         ));
         
         setBackground(Color.GRAY);
@@ -169,8 +174,8 @@ public class VisualizerPanel extends JPanel {
      * @return the grid position
      */
     private Point screenToGrid(Point screenPoint) {
-        int gridX = screenPoint.x / CELL_SIZE;
-        int gridY = screenPoint.y / CELL_SIZE;
+        int gridX = screenPoint.x * cols / getWidth();
+        int gridY = screenPoint.y * rows / getHeight();
         return new Point(gridX, gridY);
     }
     
@@ -195,27 +200,31 @@ public class VisualizerPanel extends JPanel {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
         
         Node[][] grid = engine.getGrid();
+        int panelWidth = getWidth();
+        int panelHeight = getHeight();
         
         // Draw each cell
         for (int y = 0; y < rows; y++) {
             for (int x = 0; x < cols; x++) {
                 Node node = grid[y][x];
-                drawCell(g2d, x, y, node.getType().getColor());
+                drawCell(g2d, x, y, panelWidth, panelHeight, node.getType().getColor());
             }
         }
         
         // Draw grid lines
         g2d.setColor(Color.LIGHT_GRAY);
         for (int y = 0; y <= rows; y++) {
-            g2d.drawLine(0, y * CELL_SIZE, cols * CELL_SIZE, y * CELL_SIZE);
+            int yPosition = y * panelHeight / rows;
+            g2d.drawLine(0, yPosition, panelWidth, yPosition);
         }
         for (int x = 0; x <= cols; x++) {
-            g2d.drawLine(x * CELL_SIZE, 0, x * CELL_SIZE, rows * CELL_SIZE);
+            int xPosition = x * panelWidth / cols;
+            g2d.drawLine(xPosition, 0, xPosition, panelHeight);
         }
         
         // Draw "No Path Found" message if applicable
         if (engine.getAlgorithmState() == AlgorithmEngine.AlgorithmState.NO_PATH_FOUND) {
-            drawNoPathMessage(g2d);
+            drawNoPathMessage(g2d, panelWidth, panelHeight);
         }
     }
     
@@ -226,13 +235,18 @@ public class VisualizerPanel extends JPanel {
      * @param y the grid y-coordinate
      * @param color the fill color
      */
-    private void drawCell(Graphics2D g2d, int x, int y, Color color) {
+    private void drawCell(Graphics2D g2d, int x, int y, int panelWidth, int panelHeight, Color color) {
+        int left = x * panelWidth / cols;
+        int top = y * panelHeight / rows;
+        int right = (x + 1) * panelWidth / cols;
+        int bottom = (y + 1) * panelHeight / rows;
+
         g2d.setColor(color);
         g2d.fillRect(
-            x * CELL_SIZE + GRID_LINE_WIDTH,
-            y * CELL_SIZE + GRID_LINE_WIDTH,
-            CELL_SIZE - GRID_LINE_WIDTH,
-            CELL_SIZE - GRID_LINE_WIDTH
+            left + GRID_LINE_WIDTH,
+            top + GRID_LINE_WIDTH,
+            right - left - GRID_LINE_WIDTH,
+            bottom - top - GRID_LINE_WIDTH
         );
     }
     
@@ -240,7 +254,7 @@ public class VisualizerPanel extends JPanel {
      * Draws the "No Path Found" message centered on the grid.
      * @param g2d the Graphics2D context
      */
-    private void drawNoPathMessage(Graphics2D g2d) {
+    private void drawNoPathMessage(Graphics2D g2d, int panelWidth, int panelHeight) {
         String message = "No Path Found";
         
         g2d.setFont(new Font("Arial", Font.BOLD, 24));
@@ -249,8 +263,8 @@ public class VisualizerPanel extends JPanel {
         int textWidth = fm.stringWidth(message);
         int textHeight = fm.getHeight();
         
-        int centerX = (cols * CELL_SIZE) / 2;
-        int centerY = (rows * CELL_SIZE) / 2;
+        int centerX = panelWidth / 2;
+        int centerY = panelHeight / 2;
         
         // Draw background box
         int boxPadding = 20;
